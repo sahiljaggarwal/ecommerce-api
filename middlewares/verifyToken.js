@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+// require('dotenv').config()
+const config = require('../config/default')
 
 // middleware function to verify JWT token
 const verifyToken = (req, res, next) => {
@@ -15,7 +16,8 @@ const verifyToken = (req, res, next) => {
     }
 
     const token = tokenParts[1]
-    const secret_key = process.env.SECRET_KEY
+    // const secret_key = process.env.SECRET_KEY
+    const secret_key = config.secretKey
 
     jwt.verify(token, secret_key, (err, decoded)=> {
         if(err){

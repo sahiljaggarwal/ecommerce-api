@@ -2,10 +2,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-require('dotenv').config();
+// require('dotenv').config();
+const config = require('../config/default')
 const User = require('../models/User'); // Update the path
 
-const secret_key = process.env.SECRET_KEY
+const secret_key = config.secretKey
 
 passport.serializeUser((user, done) => {
   done(null, user._id);
@@ -34,7 +35,7 @@ passport.use(
         }
 
         // Generate JWT token
-        const token = jwt.sign({ id: user._id }, secret_key, {
+        const token = jwt.sign({ id: user._id, email:user.email, username: user.username, account: user.account }, secret_key, {
           expiresIn: '24h', // Token expiration time
         });
 

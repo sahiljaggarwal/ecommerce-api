@@ -15,7 +15,7 @@ const login = async (req, res, next) => {
         if (err) {
           throw err;
         }
-        return res.status(200).json({ token: info.token, user });
+        return res.status(200).json({message: "Login Successfully",success:true, token: info.token });
       });
     })(req, res, next);
   } catch (error) {
