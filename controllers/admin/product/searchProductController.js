@@ -2,8 +2,13 @@ const Product = require('../../../models/Product')
 
 async function searchProduct(req, res){
     try {
+        // const searchTerm = req.query.q; // Search term from query parameter
+        // const regex = new RegExp(searchTerm, 'i'); // Case-insensitive regex
+
         const searchTerm = req.query.q; // Search term from query parameter
-        const regex = new RegExp(searchTerm, 'i'); // Case-insensitive regex
+        const regexTerm = searchTerm.replace(/\s+/g, '\\s+'); // Replace spaces with '\\s+' for regex
+
+        const regex = new RegExp(regexTerm, 'i');
 
         const products = await Product.find({
             $or: [

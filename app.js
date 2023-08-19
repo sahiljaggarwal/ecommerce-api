@@ -4,7 +4,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const connectDb = require('./db/connectDb');
-require('dotenv').config();
+// require('dotenv').config();
+const config = require('./config/default')
 const app = express()
 
 // middlewares
@@ -12,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
     session({
-      secret: process.env.SECRET_KEY,
+      secret: config.secretKey,
       resave: false,
       saveUninitialized: false,
     })
@@ -27,7 +28,7 @@ app.use(routes)
 connectDb()
 
 // Server Connection
-const port = process.env.PORT || 6000
+const port = config.port
 app.listen(port, () =>{
     console.log(`server running on http://localhost:${port}`)
 })

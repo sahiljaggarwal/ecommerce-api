@@ -3,7 +3,7 @@ const Product = require('../../../models/Product')
 async function getProductList(req, res){
     try {
         const products = await Product.find()
-        if(!products){
+        if(!products || products.length === 0){
             return res.status(404).json({message: "Product not found"})
         }
         return res.status(200).json({ success: true, products})
