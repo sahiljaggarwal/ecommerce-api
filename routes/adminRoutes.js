@@ -9,11 +9,13 @@ const {admin} = require('../controllers/index')
 const storage = multer.diskStorage({});
 const upload = multer({ storage });
 
+/*** Product Routes */
+
 // add product
 router.post('/product/add', verifyToken, upload.single('image'), checkRole('admin'),admin.addProduct)
 
 // update product
-router.put('/product/u/:productId', verifyToken, checkRole('admin'),admin.updateProduct)
+router.put('/product/u/:productId', verifyToken,upload.single('image'), checkRole('admin'),admin.updateProduct)
 
 // delete product
 router.delete('/product/d/:productId', verifyToken, checkRole('admin'),admin.deleteProduct)
@@ -27,6 +29,9 @@ router.get('/product/all/', verifyToken, checkRole('admin'),admin.getProductList
 // search functionality
 router.get('/search', verifyToken, checkRole('admin'),admin.searchProduct)
 
+/*** Cart Routes */
 
+// add to cart 
+// router.post('/cart/add')
 
 module.exports = router
