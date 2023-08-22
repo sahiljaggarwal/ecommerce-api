@@ -24,10 +24,12 @@ const productSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+        required: true
     },
     category: {
         type: String,
-        enum: ['smartphone', 'food', 'clothes', 'shoes']
+        enum: ['smartphone', 'food', 'clothes', 'shoes'],
+        required: true
     }
 }, {timestamps: true})
 

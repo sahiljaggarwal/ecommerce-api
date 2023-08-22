@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const verifyToken = require('../middlewares/verifyToken')
-const {user} = require('../controllers/index')
+const {auth} = require('../controllers/index')
 
-router.post('/signup', user.signUp)
-router.post('/login', user.login)
-router.get('/users',verifyToken, user.getAllUsers)
+router.post('/signup', auth.signUp)
+router.post('/login', auth.login)
+router.get('/users',verifyToken, auth.getAllUsers)
 
 module.exports = router

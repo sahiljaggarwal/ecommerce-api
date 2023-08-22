@@ -1,5 +1,6 @@
 const {addProduct, updateProduct, deleteProduct, getProductList, getProductListById, searchProduct} = require('./product')
-const {addToCart} = require('./cart')
+const {addToCart, getCartList, deleteCartItem} = require('./cart')
+const {addReview, deleteReview} = require('./review')
 
 module.exports = {
     // Product
@@ -11,5 +12,11 @@ module.exports = {
     searchProduct,
 
     // Cart
-    addToCart
+    addToCart,
+    deleteCartItem,
+    getCartList,
+
+    // review
+    addReview,
+    deleteReview
 }

@@ -1,5 +1,9 @@
 const addToCart = require('./addToCartController')
+const getCartList = require('./getCartListController')
+const deleteCartItem = require('./deleteCartItemController')
 
 module.exports = {
-    addToCart
+    addToCart,
+    getCartList,
+    deleteCartItem
 }
