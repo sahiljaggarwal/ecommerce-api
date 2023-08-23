@@ -18,7 +18,14 @@ async function deleteReview(req, res){
 
         const productId = review.productId
 
-        await review.remove()
+        // console.log(`review: ${review}`)
+
+        // Issue might be here - check if review is an instance of Mongoose model
+        if (!(review instanceof Review)) {
+            return res.status(500).json({ message: 'Review object is not an instance of Review model', success: false })
+        }
+
+        await review.deleteOne()
 
         await Product.updateOne(
             { _id: productId },

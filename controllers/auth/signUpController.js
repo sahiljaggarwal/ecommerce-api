@@ -3,6 +3,12 @@ const User = require('../../models/User')
 async function signUp(req, res){
     try {
         const {email, password, account, username} = req.body
+        if (account === 'admin') {
+            const existingAdmin = await User.findOne({ account: 'admin' })
+            if (existingAdmin) {
+                return res.status(409).json({ message: 'Admin already exists' })
+            }
+        }
         const existingUser = await User.findOne({email})
         if(existingUser){
             return res.status(409).json({message: "User already existed"})
