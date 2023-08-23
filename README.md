@@ -1,4 +1,4 @@
-# ecommerce-api
+# Nodejs Ecommerce API (Mini Ecommerce Store)
 
 ## First Step
 ```
